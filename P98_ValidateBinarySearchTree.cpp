@@ -53,3 +53,29 @@ public:
         return result;
     }
 };
+
+
+//參考
+class Solution {
+public:
+    bool isValidBST(TreeNode* root)
+    {
+        if (!root) return true;
+        vector<int> vec;
+        traverse(vec, root);
+        for (int i=0; i<vec.size()-1; i++)
+        {
+            if (vec[i]>=vec[i+1])
+                return false;
+        }
+        return true;
+    }
+
+    void traverse(vector<int>& vec, TreeNode* root)
+    {
+        if (!root) return ;
+        traverse(vec, root->left);
+        vec.push_back(root->val);
+        traverse(vec, root->right);
+    }
+};
